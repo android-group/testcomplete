@@ -1,0 +1,19 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+    background-color: #282c34;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #666;
+  }
+  
+  .table th {
+    cursor: pointer;
+    background-color: #444;
+  }
+  
