@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetcher } from './utils/fetcher';
+import AutoComplete from './components/Autocomplete';
 import './App.css';
-import Login from './features/login/LoginPage';
-import TablePage from './features/table';
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  return (
-    <div className="App">
-      {
-        isLoggedIn ?
-        <TablePage /> :
-        <Login setIsLoggedIn={setIsLoggedIn} />
-      }
-    </div>
-  );
+const App: React.FC = () => {
+    const [data, setData] = useState<string[]>([]);
+
+    useEffect(() => {
+        // Here use real API endpoint
+        const fetchData = async () => {
+            const result = await fetcher('https://jsonplaceholder.typicode.com/users');
+            setData(result.map((item: { name: string }) => item.name));
+        }
+        fetchData();
+    }, []);
+
+    return <AutoComplete data={data} />;
 }
 
 export default App;
